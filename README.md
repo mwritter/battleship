@@ -1,2 +1,2 @@
 # battleship
-web based battleship game for your enjoyment.
+Web based battleship game for your enjoyment.
