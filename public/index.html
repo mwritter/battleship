@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
     <title>Battleship</title>
 
     <!-- update the version number as needed -->
@@ -17,5 +18,31 @@
   </head>
   <body>
     <h1>Battleship</h1>
+    <div id="boat-pieces"></div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBJRcoXWHje3xZX7tsAwdBJ1NKQaggQ4lQ",
+        authDomain: "games-20d68.firebaseapp.com",
+        databaseURL: "https://games-20d68.firebaseio.com",
+        projectId: "games-20d68",
+        storageBucket: "games-20d68.appspot.com",
+        messagingSenderId: "964533623957",
+        appId: "1:964533623957:web:061db2555c381e43cc8f9c",
+        measurementId: "G-411QDQCNGM"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <script type="module" src="app.js"></script>
   </body>
 </html>
