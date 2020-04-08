@@ -60,8 +60,3 @@ const boats = [
         </svg>`
     },
 ]
-
-const boatPieces = document.getElementById('boat-pieces');
-for(let boat of boats){
-    boatPieces.innerHTML += boat.html;
-}
