@@ -1,15 +1,25 @@
 #ship_1 {
-    width: 25rem;
+    width: 5rem;
+    stroke-width: 4px;
+    fill: lightgray;
 }
 #ship_2 {
-    width: 15rem;
+    width: 25rem;
+    stroke-width: 4px;
+    fill: lightgray;
 }
 #ship_3 {
     width: 15rem;
+    stroke-width: 4px;
+    fill: lightgray;
 }
 #ship_4 {
     width: 15rem;
+    stroke-width: 6px;
+    fill: lightgray;
 }
 #ship_5 {
-    width: 5rem;
+    width: 15rem;
+    stroke-width: 4px;
+    fill: lightgray;
 }
