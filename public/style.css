@@ -1,0 +1,173 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  row-gap: 20px;
+  column-gap: 20px;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  grid-template-areas:
+    "side-bar board board"
+    "side-bar board board"
+    "side-bar game-pieces game-pieces";
+}
+
+.boat {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5px;
+  background-color: lightgray;
+  height: 3rem;
+  border: 5px solid black;
+  border-radius: 15px;
+}
+
+.five {
+  width: 20rem;
+}
+.four {
+  width: 15rem;
+}
+.three {
+  width: 10rem;
+}
+.two {
+  width: 5rem;
+}
+
+span.point {
+  border: 4px solid black;
+  z-index: 1;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+}
+
+span.place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.h-occupied {
+  background-color: lightgray;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+}
+.v-occupied {
+  background-color: lightgray;
+  border-right: 5px solid black;
+  border-left: 5px solid black;
+}
+
+.v-front-end {
+  border-radius: 15px 15px 0 0;
+  border-top: 5px solid black;
+}
+.v-back-end {
+  border-radius: 0 0 15px 15px;
+  border-bottom: 5px solid black;
+}
+.h-back-end {
+  border-radius: 0 15px 15px 0;
+  border-right: 5px solid black;
+}
+.h-front-end {
+  border-radius: 15px 0 0 15px;
+  border-left: 5px solid black;
+}
+
+.hit {
+  background-color: rgb(197, 31, 31);
+}
+.miss {
+  background-color: white;
+}
+.empty {
+  background-color: #7e7e7e;
+}
+
+.board {
+  display: grid;
+  grid-area: board;
+  justify-self: center;
+  align-self: end;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  width: 700px;
+  height: 600px;
+  max-height: 900px;
+  max-width: 1000px;
+  border: 10px solid black;
+  background-color: #4e5063;
+  justify-items: center;
+  align-items: center;
+}
+
+#attack-board {
+  border-radius: 50px 50px 0 0;
+}
+
+#fleet-board {
+  border-radius: 0 0 50px 50px;
+}
+
+.board p {
+  color: white;
+}
+
+#game-pieces {
+  grid-area: game-pieces;
+  justify-self: center;
+  align-self: start;
+}
+
+.game-pieces-row {
+  display: flex;
+}
+
+#side-bar {
+  grid-area: side-bar;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: #4e5063;
+  border-top: 10px solid black;
+  border-bottom: 10px solid black;
+  border-right: 10px solid black;
+  border-radius: 0 50px 50px 0;
+}
+
+#score-board {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  height: 15rem;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+}
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+}
+
+.divider {
+  background-color: white;
+  height: 2px;
+  width: 85%;
+  align-self: center;
+  margin: 1rem 0;
+}
