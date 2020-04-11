@@ -1,7 +1,7 @@
-import { boats } from "./boats.js"
+import Boat from "./Boat.js"
 
 const pieces = document.getElementById('boat-pieces');
 
-for(let boat of boats){
-    pieces.innerHTML += boat.html;
-}
+let boat_1 = new Boat();
+
+console.log(boat_1);
