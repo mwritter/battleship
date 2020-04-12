@@ -17,7 +17,7 @@
     <script defer src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <div id="side-bar">
+    <!-- <div id="side-bar">
       <div id="score-board">
         Score Board
         <div class="divider"></div>
@@ -26,129 +26,137 @@
         Chat
         <div class="divider"></div>
       </div>
-    </div>
-    <div id="fleet-board" class="board">
-      <p></p>
-      <p>1</p>
-      <p>2</p>
-      <p>3</p>
-      <p>4</p>
-      <p>5</p>
-      <p>6</p>
-      <p>7</p>
-      <p>8</p>
-      <p>9</p>
-      <p>10</p>
-      <p>A</p>
-      <span class="place a1"><span class="point empty"></span></span>
-      <span class="place a2"><span class="point empty"></span></span>
-      <span class="place a3"><span class="point empty"></span></span>
-      <span class="place a4"><span class="point empty"></span></span>
-      <span class="place a5"><span class="point empty"></span></span>
-      <span class="place a6"><span class="point empty"></span></span>
-      <span class="place a7"><span class="point empty"></span></span>
-      <span class="place a8"><span class="point empty"></span></span>
-      <span class="place a9"><span class="point empty"></span></span>
-      <span class="place a10"><span class="point empty"></span></span>
-      <p>B</p>
-      <span class="place b1"><span class="point empty"></span></span>
-      <span class="place b2"><span class="point empty"></span></span>
-      <span class="place b3"><span class="point empty"></span></span>
-      <span class="place b4"><span class="point empty"></span></span>
-      <span class="place b5"><span class="point empty"></span></span>
-      <span class="place b6"><span class="point empty"></span></span>
-      <span class="place b7"><span class="point empty"></span></span>
-      <span class="place b8"><span class="point empty"></span></span>
-      <span class="place b9"><span class="point empty"></span></span>
-      <span class="place b10"><span class="point empty"></span></span>
-      <p>C</p>
-      <span class="place c1"><span class="point empty"></span></span>
-      <span class="place c2"><span class="point empty"></span></span>
-      <span class="place c3"><span class="point empty"></span></span>
-      <span class="place c4"><span class="point empty"></span></span>
-      <span class="place c5"><span class="point empty"></span></span>
-      <span class="place c6"><span class="point empty"></span></span>
-      <span class="place c7"><span class="point empty"></span></span>
-      <span class="place c8"><span class="point empty"></span></span>
-      <span class="place c9"><span class="point empty"></span></span>
-      <span class="place c10"><span class="point empty"></span></span>
-      <p>D</p>
-      <span class="place d1"><span class="point empty"></span></span>
-      <span class="place d2"><span class="point empty"></span></span>
-      <span class="place d3"><span class="point empty"></span></span>
-      <span class="place d4"><span class="point empty"></span></span>
-      <span class="place d5"><span class="point empty"></span></span>
-      <span class="place d6"><span class="point empty"></span></span>
-      <span class="place d7"><span class="point empty"></span></span>
-      <span class="place d8"><span class="point empty"></span></span>
-      <span class="place d9"><span class="point empty"></span></span>
-      <span class="place d10"><span class="point empty"></span></span>
-      <p>E</p>
-      <span class="place e1"><span class="point empty"></span></span>
-      <span class="place e2"><span class="point empty"></span></span>
-      <span class="place e3"><span class="point empty"></span></span>
-      <span class="place e4"><span class="point empty"></span></span>
-      <span class="place e5"><span class="point empty"></span></span>
-      <span class="place e6"><span class="point empty"></span></span>
-      <span class="place e7"><span class="point empty"></span></span>
-      <span class="place e8"><span class="point empty"></span></span>
-      <span class="place e9"><span class="point empty"></span></span>
-      <span class="place e10"><span class="point empty"></span></span>
-      <p>F</p>
-      <span class="place f1"><span class="point empty"></span></span>
-      <span class="place f2"><span class="point empty"></span></span>
-      <span class="place f3"><span class="point empty"></span></span>
-      <span class="place f4"><span class="point empty"></span></span>
-      <span class="place f5"><span class="point empty"></span></span>
-      <span class="place f6"><span class="point empty"></span></span>
-      <span class="place f7"><span class="point empty"></span></span>
-      <span class="place f8"><span class="point empty"></span></span>
-      <span class="place f9"><span class="point empty"></span></span>
-      <span class="place f10"><span class="point empty"></span></span>
-      <p>G</p>
-      <span class="place g1"><span class="point empty"></span></span>
-      <span class="place g2"><span class="point empty"></span></span>
-      <span class="place g3"><span class="point empty"></span></span>
-      <span class="place g4"><span class="point empty"></span></span>
-      <span class="place g5"><span class="point empty"></span></span>
-      <span class="place g6"><span class="point empty"></span></span>
-      <span class="place g7"><span class="point empty"></span></span>
-      <span class="place g8"><span class="point empty"></span></span>
-      <span class="place g9"><span class="point empty"></span></span>
-      <span class="place g10"><span class="point empty"></span></span>
-      <p>H</p>
-      <span class="place h1"><span class="point empty"></span></span>
-      <span class="place h2"><span class="point empty"></span></span>
-      <span class="place h3"><span class="point empty"></span></span>
-      <span class="place h4"><span class="point empty"></span></span>
-      <span class="place h5"><span class="point empty"></span></span>
-      <span class="place h6"><span class="point empty"></span></span>
-      <span class="place h7"><span class="point empty"></span></span>
-      <span class="place h8"><span class="point empty"></span></span>
-      <span class="place h9"><span class="point empty"></span></span>
-      <span class="place h10"><span class="point empty"></span></span>
-      <p>I</p>
-      <span class="place i1"><span class="point empty"></span></span>
-      <span class="place i2"><span class="point empty"></span></span>
-      <span class="place i3"><span class="point empty"></span></span>
-      <span class="place i4"><span class="point empty"></span></span>
-      <span class="place i5"><span class="point empty"></span></span>
-      <span class="place i6"><span class="point empty"></span></span>
-      <span class="place i7"><span class="point empty"></span></span>
-      <span class="place i8"><span class="point empty"></span></span>
-      <span class="place i9"><span class="point empty"></span></span>
-      <span class="place i10"><span class="point empty"></span></span>
-      <p>J</p>
-      <span class="place j1"><span class="point empty"></span></span>
-      <span class="place j2"><span class="point empty"></span></span>
-      <span class="place j3"><span class="point empty"></span></span>
-      <span class="place j4"><span class="point empty"></span></span>
-      <span class="place j5"><span class="point empty"></span></span>
-      <span class="place j6"><span class="point empty"></span></span>
-      <span class="place j7"><span class="point empty"></span></span>
-      <span class="place j8"><span class="point empty"></span></span>
-      <span class="place j9"><span class="point empty"></span></span>
-      <span class="place j10"><span class="point empty"></span></span>
+    </div> -->
+    <div id="board-and-info">
+      <div id="game-info">
+        <span class="place"><span class="point hit"></span></span>
+        <p>HIT</p>
+        <span class="place"><span class="point miss"></span></span>
+        <p>MISS</p>
+      </div>
+      <div id="fleet-board" class="board">
+        <p></p>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
+        <p>10</p>
+        <p>A</p>
+        <span class="place a1"><span class="point empty"></span></span>
+        <span class="place a2"><span class="point empty"></span></span>
+        <span class="place a3"><span class="point empty"></span></span>
+        <span class="place a4"><span class="point empty"></span></span>
+        <span class="place a5"><span class="point empty"></span></span>
+        <span class="place a6"><span class="point empty"></span></span>
+        <span class="place a7"><span class="point empty"></span></span>
+        <span class="place a8"><span class="point empty"></span></span>
+        <span class="place a9"><span class="point empty"></span></span>
+        <span class="place a10"><span class="point empty"></span></span>
+        <p>B</p>
+        <span class="place b1"><span class="point empty"></span></span>
+        <span class="place b2"><span class="point empty"></span></span>
+        <span class="place b3"><span class="point empty"></span></span>
+        <span class="place b4"><span class="point empty"></span></span>
+        <span class="place b5"><span class="point empty"></span></span>
+        <span class="place b6"><span class="point empty"></span></span>
+        <span class="place b7"><span class="point empty"></span></span>
+        <span class="place b8"><span class="point empty"></span></span>
+        <span class="place b9"><span class="point empty"></span></span>
+        <span class="place b10"><span class="point empty"></span></span>
+        <p>C</p>
+        <span class="place c1"><span class="point empty"></span></span>
+        <span class="place c2"><span class="point empty"></span></span>
+        <span class="place c3"><span class="point empty"></span></span>
+        <span class="place c4"><span class="point empty"></span></span>
+        <span class="place c5"><span class="point empty"></span></span>
+        <span class="place c6"><span class="point empty"></span></span>
+        <span class="place c7"><span class="point empty"></span></span>
+        <span class="place c8"><span class="point empty"></span></span>
+        <span class="place c9"><span class="point empty"></span></span>
+        <span class="place c10"><span class="point empty"></span></span>
+        <p>D</p>
+        <span class="place d1"><span class="point empty"></span></span>
+        <span class="place d2"><span class="point empty"></span></span>
+        <span class="place d3"><span class="point empty"></span></span>
+        <span class="place d4"><span class="point empty"></span></span>
+        <span class="place d5"><span class="point empty"></span></span>
+        <span class="place d6"><span class="point empty"></span></span>
+        <span class="place d7"><span class="point empty"></span></span>
+        <span class="place d8"><span class="point empty"></span></span>
+        <span class="place d9"><span class="point empty"></span></span>
+        <span class="place d10"><span class="point empty"></span></span>
+        <p>E</p>
+        <span class="place e1"><span class="point empty"></span></span>
+        <span class="place e2"><span class="point empty"></span></span>
+        <span class="place e3"><span class="point empty"></span></span>
+        <span class="place e4"><span class="point empty"></span></span>
+        <span class="place e5"><span class="point empty"></span></span>
+        <span class="place e6"><span class="point empty"></span></span>
+        <span class="place e7"><span class="point empty"></span></span>
+        <span class="place e8"><span class="point empty"></span></span>
+        <span class="place e9"><span class="point empty"></span></span>
+        <span class="place e10"><span class="point empty"></span></span>
+        <p>F</p>
+        <span class="place f1"><span class="point empty"></span></span>
+        <span class="place f2"><span class="point empty"></span></span>
+        <span class="place f3"><span class="point empty"></span></span>
+        <span class="place f4"><span class="point empty"></span></span>
+        <span class="place f5"><span class="point empty"></span></span>
+        <span class="place f6"><span class="point empty"></span></span>
+        <span class="place f7"><span class="point empty"></span></span>
+        <span class="place f8"><span class="point empty"></span></span>
+        <span class="place f9"><span class="point empty"></span></span>
+        <span class="place f10"><span class="point empty"></span></span>
+        <p>G</p>
+        <span class="place g1"><span class="point empty"></span></span>
+        <span class="place g2"><span class="point empty"></span></span>
+        <span class="place g3"><span class="point empty"></span></span>
+        <span class="place g4"><span class="point empty"></span></span>
+        <span class="place g5"><span class="point empty"></span></span>
+        <span class="place g6"><span class="point empty"></span></span>
+        <span class="place g7"><span class="point empty"></span></span>
+        <span class="place g8"><span class="point empty"></span></span>
+        <span class="place g9"><span class="point empty"></span></span>
+        <span class="place g10"><span class="point empty"></span></span>
+        <p>H</p>
+        <span class="place h1"><span class="point empty"></span></span>
+        <span class="place h2"><span class="point empty"></span></span>
+        <span class="place h3"><span class="point empty"></span></span>
+        <span class="place h4"><span class="point empty"></span></span>
+        <span class="place h5"><span class="point empty"></span></span>
+        <span class="place h6"><span class="point empty"></span></span>
+        <span class="place h7"><span class="point empty"></span></span>
+        <span class="place h8"><span class="point empty"></span></span>
+        <span class="place h9"><span class="point empty"></span></span>
+        <span class="place h10"><span class="point empty"></span></span>
+        <p>I</p>
+        <span class="place i1"><span class="point empty"></span></span>
+        <span class="place i2"><span class="point empty"></span></span>
+        <span class="place i3"><span class="point empty"></span></span>
+        <span class="place i4"><span class="point empty"></span></span>
+        <span class="place i5"><span class="point empty"></span></span>
+        <span class="place i6"><span class="point empty"></span></span>
+        <span class="place i7"><span class="point empty"></span></span>
+        <span class="place i8"><span class="point empty"></span></span>
+        <span class="place i9"><span class="point empty"></span></span>
+        <span class="place i10"><span class="point empty"></span></span>
+        <p>J</p>
+        <span class="place j1"><span class="point empty"></span></span>
+        <span class="place j2"><span class="point empty"></span></span>
+        <span class="place j3"><span class="point empty"></span></span>
+        <span class="place j4"><span class="point empty"></span></span>
+        <span class="place j5"><span class="point empty"></span></span>
+        <span class="place j6"><span class="point empty"></span></span>
+        <span class="place j7"><span class="point empty"></span></span>
+        <span class="place j8"><span class="point empty"></span></span>
+        <span class="place j9"><span class="point empty"></span></span>
+        <span class="place j10"><span class="point empty"></span></span>
+      </div>
     </div>
     <div id="game-pieces">
       <div class="game-pieces-row">

@@ -10,10 +10,6 @@ body {
   column-gap: 20px;
   height: 100vh;
   font-family: "Roboto", sans-serif;
-  grid-template-areas:
-    "side-bar board board"
-    "side-bar board board"
-    "side-bar game-pieces game-pieces";
 }
 
 .boat {
@@ -95,9 +91,33 @@ span.place {
   background-color: #7e7e7e;
 }
 
+#board-and-info {
+  display: gird;
+  justify-self: center;
+  align-self: end;
+}
+
+#game-info {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 20px;
+  justify-content: start;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+#game-info .place {
+  justify-content: start;
+
+}
+
+#game-info p {
+  justify-content: start;
+}
+
 .board {
   display: grid;
-  grid-area: board;
+  /* grid-area: board; */
   justify-self: center;
   align-self: end;
   grid-template-columns: repeat(11, 1fr);
@@ -125,7 +145,7 @@ span.place {
 }
 
 #game-pieces {
-  grid-area: game-pieces;
+  /* grid-area: game-pieces; */
   justify-self: center;
   align-self: start;
 }
@@ -135,7 +155,7 @@ span.place {
 }
 
 #side-bar {
-  grid-area: side-bar;
+  /* grid-area: side-bar; */
   color: white;
   display: flex;
   flex-direction: column;
