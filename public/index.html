@@ -17,16 +17,7 @@
     <script defer src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <!-- <div id="side-bar">
-      <div id="score-board">
-        Score Board
-        <div class="divider"></div>
-      </div>
-      <div id="chat">
-        Chat
-        <div class="divider"></div>
-      </div>
-    </div> -->
+    <div id="player-info"></div>
     <div id="fleet-board-and-info">
       <div id="game-info">
         <span class="place"><span class="point hit"></span></span>
@@ -34,131 +25,9 @@
         <span class="place"><span class="point miss"></span></span>
         <p>MISS</p>
       </div>
-      <div id="fleet-board" class="board">
-        <p></p>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
-        <p>4</p>
-        <p>5</p>
-        <p>6</p>
-        <p>7</p>
-        <p>8</p>
-        <p>9</p>
-        <p>10</p>
-        <p>A</p>
-        <span data-value="a1"  class="place"><span class="point empty"></span></span>
-        <span data-value="a2"  class="place"><span class="point empty"></span></span>
-        <span data-value="a3"  class="place"><span class="point empty"></span></span>
-        <span data-value="a4"  class="place"><span class="point empty"></span></span>
-        <span data-value="a5"  class="place"><span class="point empty"></span></span>
-        <span data-value="a6"  class="place"><span class="point empty"></span></span>
-        <span data-value="a7"  class="place"><span class="point empty"></span></span>
-        <span data-value="a8"  class="place"><span class="point empty"></span></span>
-        <span data-value="a9"  class="place"><span class="point empty"></span></span>
-        <span data-value="a10" class="place"><span  class="point empty"></span></span>
-        <p>B</p>
-        <span data-value="b1"  class="place"><span class="point empty"></span></span>
-        <span data-value="b2"  class="place"><span class="point empty"></span></span>
-        <span data-value="b3"  class="place"><span class="point empty"></span></span>
-        <span data-value="b4"  class="place"><span class="point empty"></span></span>
-        <span data-value="b5"  class="place"><span class="point empty"></span></span>
-        <span data-value="b6"  class="place"><span class="point empty"></span></span>
-        <span data-value="b7"  class="place"><span class="point empty"></span></span>
-        <span data-value="b8"  class="place"><span class="point empty"></span></span>
-        <span data-value="b9"  class="place"><span class="point empty"></span></span>
-        <span data-value="b10" class="place"><span  class="point empty"></span></span>
-        <p>C</p>
-        <span data-value="c1"  class="place"><span class="point empty"></span></span>
-        <span data-value="c2"  class="place"><span class="point empty"></span></span>
-        <span data-value="c3"  class="place"><span class="point empty"></span></span>
-        <span data-value="c4"  class="place"><span class="point empty"></span></span>
-        <span data-value="c5"  class="place"><span class="point empty"></span></span>
-        <span data-value="c6"  class="place"><span class="point empty"></span></span>
-        <span data-value="c7"  class="place"><span class="point empty"></span></span>
-        <span data-value="c8"  class="place"><span class="point empty"></span></span>
-        <span data-value="c9"  class="place"><span class="point empty"></span></span>
-        <span data-value="c10" class="place"><span  class="point empty"></span></span>
-        <p>D</p>
-        <span data-value="d1"  class="place"><span class="point empty"></span></span>
-        <span data-value="d2"  class="place"><span class="point empty"></span></span>
-        <span data-value="d3"  class="place"><span class="point empty"></span></span>
-        <span data-value="d4"  class="place"><span class="point empty"></span></span>
-        <span data-value="d5"  class="place"><span class="point empty"></span></span>
-        <span data-value="d6"  class="place"><span class="point empty"></span></span>
-        <span data-value="d7"  class="place"><span class="point empty"></span></span>
-        <span data-value="d8"  class="place"><span class="point empty"></span></span>
-        <span data-value="d9"  class="place"><span class="point empty"></span></span>
-        <span data-value="d10" class="place"><span  class="point empty"></span></span>
-        <p>E</p>
-        <span data-value="e1"  class="place"><span class="point empty"></span></span>
-        <span data-value="e2"  class="place"><span class="point empty"></span></span>
-        <span data-value="e3"  class="place"><span class="point empty"></span></span>
-        <span data-value="e4"  class="place"><span class="point empty"></span></span>
-        <span data-value="e5"  class="place"><span class="point empty"></span></span>
-        <span data-value="e6"  class="place"><span class="point empty"></span></span>
-        <span data-value="e7"  class="place"><span class="point empty"></span></span>
-        <span data-value="e8"  class="place"><span class="point empty"></span></span>
-        <span data-value="e9"  class="place"><span class="point empty"></span></span>
-        <span data-value="e10" class="place"><span  class="point empty"></span></span>
-        <p>F</p>
-        <span data-value="f1"  class="place"><span class="point empty"></span></span>
-        <span data-value="f2"  class="place"><span class="point empty"></span></span>
-        <span data-value="f3"  class="place"><span class="point empty"></span></span>
-        <span data-value="f4"  class="place"><span class="point empty"></span></span>
-        <span data-value="f5"  class="place"><span class="point empty"></span></span>
-        <span data-value="f6"  class="place"><span class="point empty"></span></span>
-        <span data-value="f7"  class="place"><span class="point empty"></span></span>
-        <span data-value="f8"  class="place"><span class="point empty"></span></span>
-        <span data-value="f9"  class="place"><span class="point empty"></span></span>
-        <span data-value="f10" class="place"><span  class="point empty"></span></span>
-        <p>G</p>
-        <span data-value="g1"  class="place"><span class="point empty"></span></span>
-        <span data-value="g2"  class="place"><span class="point empty"></span></span>
-        <span data-value="g3"  class="place"><span class="point empty"></span></span>
-        <span data-value="g4"  class="place"><span class="point empty"></span></span>
-        <span data-value="g5"  class="place"><span class="point empty"></span></span>
-        <span data-value="g6"  class="place"><span class="point empty"></span></span>
-        <span data-value="g7"  class="place"><span class="point empty"></span></span>
-        <span data-value="g8"  class="place"><span class="point empty"></span></span>
-        <span data-value="g9"  class="place"><span class="point empty"></span></span>
-        <span data-value="g10" class="place"><span  class="point empty"></span></span>
-        <p>H</p>
-        <span data-value="h1" class="place"><span class="point empty"></span></span>
-        <span data-value="h2" class="place"><span class="point empty"></span></span>
-        <span data-value="h3" class="place"><span class="point empty"></span></span>
-        <span data-value="h4" class="place"><span class="point empty"></span></span>
-        <span data-value="h5" class="place"><span class="point empty"></span></span>
-        <span data-value="h6" class="place"><span class="point empty"></span></span>
-        <span data-value="h7" class="place"><span class="point empty"></span></span>
-        <span data-value="h8" class="place"><span class="point empty"></span></span>
-        <span data-value="h9" class="place"><span class="point empty"></span></span>
-        <span data-value="h10"class="place"><span  class="point empty"></span></span>
-        <p>I</p>
-        <span data-value="i1" class="place"><span class="point empty"></span></span>
-        <span data-value="i2" class="place"><span class="point empty"></span></span>
-        <span data-value="i3" class="place"><span class="point empty"></span></span>
-        <span data-value="i4" class="place"><span class="point empty"></span></span>
-        <span data-value="i5" class="place"><span class="point empty"></span></span>
-        <span data-value="i6" class="place"><span class="point empty"></span></span>
-        <span data-value="i7" class="place"><span class="point empty"></span></span>
-        <span data-value="i8" class="place"><span class="point empty"></span></span>
-        <span data-value="i9" class="place"><span class="point empty"></span></span>
-        <span data-value="i10"class="place"><span  class="point empty"></span></span>
-        <p>J</p>
-        <span data-value="j1" class="place"><span class="point empty"></span></span>
-        <span data-value="j2" class="place"><span class="point empty"></span></span>
-        <span data-value="j3" class="place"><span class="point empty"></span></span>
-        <span data-value="j4" class="place"><span class="point empty"></span></span>
-        <span data-value="j5" class="place"><span class="point empty"></span></span>
-        <span data-value="j6" class="place"><span class="point empty"></span></span>
-        <span data-value="j7" class="place"><span class="point empty"></span></span>
-        <span data-value="j8" class="place"><span class="point empty"></span></span>
-        <span data-value="j9" class="place"><span class="point empty"></span></span>
-        <span data-value="j10" class="place"><span  class="point empty"></span></span>
-      </div>
+      <div id="fleet-board" class="board"></div>
       <div id="game-pieces">
-        <div class="game-pieces-row">
+        <!-- <div class="game-pieces-row">
           <div data-value="5" class="boat five"></div>
           <div data-value="4" class="boat four"></div>
         </div>
@@ -166,7 +35,7 @@
           <div data-value="3" class="boat three"></div>
           <div data-value="3" class="boat three"></div>
           <div data-value="2" class="boat two"></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <span id="info" class="btn">Place your fleet</span>

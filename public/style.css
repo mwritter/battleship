@@ -9,7 +9,6 @@ body {
   row-gap: 20px;
   column-gap: 20px;
   height: 85vh;
-
   font-family: "Roboto", sans-serif;
 }
 
@@ -97,8 +96,8 @@ span.place {
   display: grid;
   justify-self: center;
   align-self: end;
-  grid-row: 1/2;
-  grid-column: 1/2;
+  /* grid-row: 1/2;
+  grid-column: 1/2; */
 }
 
 #attack-board-and-info {
@@ -107,6 +106,12 @@ span.place {
   align-self: end;
   grid-row: 1/2;
   grid-column: 1/2;
+}
+
+#player-info {
+  /* grid-area: player-info; */
+  text-align: center;
+  font-size: 2rem;
 }
 
 #game-info {
@@ -121,7 +126,6 @@ span.place {
 
 #game-info .place {
   justify-content: start;
-
 }
 
 #game-info p {
@@ -219,17 +223,18 @@ span.place {
 }
 
 #info {
+  /* grid-area: info; */
   background-color: #4e5063;
 }
 
-#board-toggle{
+#board-toggle {
   display: none;
   background-color: #4e5063;
 }
 
 #lock-fleet {
   display: none;
-  background-color: #74A763;
+  background-color: #74a763;
 }
 
 #end-game-modal {
@@ -246,7 +251,7 @@ span.place {
   grid-column: 1/2;
   justify-self: center;
   align-self: center;
-  border: 5px solid #74A763;
+  border: 5px solid #74a763;
   border-radius: 50px;
   height: 300px;
   width: 500px;
