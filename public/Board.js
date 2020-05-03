@@ -3,7 +3,7 @@ class Board {
     this.type = options.type;
     this.ROWS = "abcdefghij";
     this.COLUMNS = 10;
-    this.render();
+    this.showGamePieces = options.withGamePeces || false;
   }
 
   render() {
@@ -15,7 +15,9 @@ class Board {
 
   buildBoard() {
     this.buildGrid();
-    this.buildGamePieces();
+    if (this.showGamePieces) {
+      this.buildGamePieces();
+    }
   }
 
   buildGrid() {

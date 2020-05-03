@@ -1,5 +1,5 @@
-import game from "./dummy_db.js";
 import Board from "./Board.js";
+import Player from "./Player.js";
 
 /*
  *Just for testing toggle between attack board and fleet board
@@ -7,11 +7,14 @@ import Board from "./Board.js";
  *to see the button.
  */
 const playerInfo = document.getElementById("player-info");
-playerInfo.innerHTML = "Player 1";
-const board = new Board({ type: "fleet" });
-window.board = board;
+const Player_One = new Player("Player 1");
+const Player_Two = new Player("Player 2");
+playerInfo.innerHTML = Player_One.getName();
+Player_One.fleetBoard = new Board({ type: "fleet", withGamePeces: true });
+Player_Two.fleetBoard = new Board({ type: "fleet", withGamePeces: true });
+Player_One.fleetBoard.render();
 const fleetBoard = document.getElementById("fleet-board");
-fleetBoard.replaceWith(board.el);
+fleetBoard.replaceWith(Player_One.fleetBoard.el);
 
 const ROWS = "abcdefghij".split("");
 let placingBoat = false;
@@ -39,8 +42,77 @@ let startRow = currentRow;
 let endRow = currentRow;
 let points = [],
   pos = "h";
-window.currentPlayer = { name: "Player 1", data: "player1" };
-window.nextPlayer = { name: "Player 2", data: "player2" };
+window.currentPlayer = Player_One;
+window.nextPlayer = Player_Two;
+
+const togglePlayer = () => {
+  playerInfo.innerHTML = window.nextPlayer.name;
+  let player = window.currentPlayer;
+  window.currentPlayer = window.nextPlayer;
+  window.nextPlayer = player;
+};
+
+const clearBoard = () => {
+  const points = document.querySelectorAll("#attack-board .point");
+  for (let point of points) {
+    point.classList.remove("hit");
+    point.classList.remove("miss");
+    point.classList.add("empty");
+  }
+};
+
+const toggleAttackBoard = () => {
+  clearBoard();
+  const plays = window.currentPlayer.attacks;
+  for (let play of plays) {
+    document
+      .querySelector(`#attack-board [data-value="${play.place.dataset.value}"]`)
+      .firstChild.classList.replace("empty", play.className);
+  }
+};
+
+const takeShot = (place) => {
+  let className = "miss";
+  for (let points of window.nextPlayer.fleet) {
+    let found = false;
+    className = "miss";
+    for (let point of points) {
+      if (point.point == place.dataset.value) {
+        found = true;
+        className = "hit";
+        place.firstElementChild.classList.remove("empty");
+        place.firstElementChild.classList.remove("miss");
+        place.firstElementChild.classList.add(className);
+        break;
+      } else {
+        place.firstElementChild.classList.remove("empty");
+        place.firstElementChild.classList.add("miss");
+      }
+    }
+    if (found) {
+      break;
+    }
+  }
+  window.currentPlayer.attacks.push({
+    place,
+    className,
+  });
+  togglePlayer();
+  toggleAttackBoard();
+};
+
+const addShotListener = () => {
+  const places = document.getElementsByClassName("place");
+  for (let place of places) {
+    place.addEventListener("click", (e) => {
+      if (!place.firstElementChild.classList.value.includes("empty")) {
+        return;
+      }
+      takeShot(place);
+    });
+  }
+};
+
 const addBoatClickListener = (boat) => {
   let length = +boat.dataset.value;
   window.startColumn = 1;
@@ -60,7 +132,7 @@ const addBoatClickListener = (boat) => {
     }
   };
   window.placeBoatH = (row) => {
-    let currentBoats = game[window.currentPlayer.data].fleet;
+    let currentBoats = window.currentPlayer.fleet;
     currentRow = row;
     points = [];
     for (let i = 0; i < length; i++) {
@@ -86,7 +158,7 @@ const addBoatClickListener = (boat) => {
     start = undefined;
   };
   window.placeBoatV = () => {
-    let currentBoats = game[window.currentPlayer.data].fleet;
+    let currentBoats = window.currentPlayer.fleet;
     let rows = ROWS.slice(ROWS.indexOf(startRow), ROWS.indexOf(endRow) + 1);
     points = [];
     for (let i = 0; i < length; i++) {
@@ -120,7 +192,7 @@ const addBoatMoveListener = (e) => {
   let boat = window.boat;
   let length = +boat.dataset.value;
   const allPiecesSet = (player) => {
-    return game[player].fleet.length == 5;
+    return player.fleet.length == 5;
   };
   switch (e.keyCode) {
     case 40: {
@@ -244,7 +316,7 @@ const addBoatMoveListener = (e) => {
         };
       });
       let found = false;
-      for (let currentBoat of game[window.currentPlayer.data].fleet) {
+      for (let currentBoat of window.currentPlayer.fleet) {
         for (let point of currentBoat) {
           const newPoint = pointArray.find((p) => p.point == point.point);
           if (newPoint) {
@@ -254,21 +326,33 @@ const addBoatMoveListener = (e) => {
         }
       }
       if (!found) {
-        game[window.currentPlayer.data].fleet.push(pointArray);
+        window.currentPlayer.fleet.push(pointArray);
         placingBoat = false;
         document.removeEventListener("keydown", addBoatMoveListener);
         pos = "h";
-        if (allPiecesSet("player1") && allPiecesSet("player2")) {
-          console.log(game);
-        } else if (allPiecesSet(window.currentPlayer.data)) {
-          playerInfo.innerHTML = window.nextPlayer.name;
-          window.currentPlayer = window.nextPlayer;
-          window.nextPlayer = {};
+        if (
+          allPiecesSet(window.currentPlayer) &&
+          allPiecesSet(window.nextPlayer)
+        ) {
+          document.getElementById("info").style.display = "none";
+          window.nextPlayer.attackBoard = new Board({ type: "attack" });
+          window.nextPlayer.attackBoard.render();
+          let fleet = document.getElementById("fleet-board");
+          fleet.innerHTML = "";
+          fleet.style.display = "none";
+          document
+            .getElementById("fleet-board-and-info")
+            .append(window.nextPlayer.attackBoard.el);
+          togglePlayer();
+          addShotListener();
+        } else if (allPiecesSet(window.currentPlayer)) {
           document.getElementById("fleet-board").innerHTML = "";
-          window.board = new Board({ type: "fleet" });
-          document.getElementById("fleet-board").replaceWith(window.board.el);
+          window.nextPlayer.fleetBoard.render();
+          document
+            .getElementById("fleet-board")
+            .replaceWith(window.nextPlayer.fleetBoard.el);
+          togglePlayer();
           const boats = document.getElementsByClassName("boat");
-
           for (let boat of boats) {
             boat.addEventListener("click", () => {
               addBoatClickListener(boat);
