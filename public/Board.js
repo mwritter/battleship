@@ -3,10 +3,11 @@ class Board {
     this.type = options.type;
     this.ROWS = "abcdefghij";
     this.COLUMNS = 10;
-    this.showGamePieces = options.withGamePeces || false;
+    this.showGamePieces = options.withGamePieces || false;
   }
 
   render() {
+    let parent = document.getElementById("board-and-info");
     this.el = document.createElement("div");
     this.el.setAttribute("id", `${this.type}-board`);
     this.el.classList.add("board");
@@ -15,9 +16,6 @@ class Board {
 
   buildBoard() {
     this.buildGrid();
-    if (this.showGamePieces) {
-      this.buildGamePieces();
-    }
   }
 
   buildGrid() {
@@ -49,7 +47,8 @@ class Board {
   }
 
   buildGamePieces() {
-    const gamePeces = document.getElementById("game-pieces");
+    const gamePieces = document.createElement('div');
+    gamePieces.setAttribute('id', 'game-pieces')
     const boatSizes = [
       { class: "five", value: "5" },
       { class: "four", value: "4" },
@@ -72,8 +71,9 @@ class Board {
         row_two.append(div);
       }
     }
-    gamePeces.append(row_one);
-    gamePeces.append(row_two);
+    gamePieces.append(row_one);
+    gamePieces.append(row_two);
+    return gamePieces;
   }
 }
 

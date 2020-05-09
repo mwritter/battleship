@@ -10,31 +10,15 @@ const playerInfo = document.getElementById("player-info");
 const Player_One = new Player("Player 1");
 const Player_Two = new Player("Player 2");
 playerInfo.innerHTML = Player_One.getName();
-Player_One.fleetBoard = new Board({ type: "fleet", withGamePeces: true });
-Player_Two.fleetBoard = new Board({ type: "fleet", withGamePeces: true });
+Player_One.fleetBoard = new Board({ type: "fleet"});
+Player_Two.fleetBoard = new Board({ type: "fleet"});
 Player_One.fleetBoard.render();
-const fleetBoard = document.getElementById("fleet-board");
-fleetBoard.replaceWith(Player_One.fleetBoard.el);
+const boardDisplay = document.getElementById("board-and-info");
+boardDisplay.append(Player_One.fleetBoard.el);
+boardDisplay.append(Player_One.fleetBoard.buildGamePieces());
 
 const ROWS = "abcdefghij".split("");
 let placingBoat = false;
-const boardToggle = document.getElementById("board-toggle");
-boardToggle.addEventListener("click", () => {
-  const fleetBoard = document.getElementById("fleet-board-and-info");
-  const attackBoard = document.getElementById("attack-board-and-info");
-  const isFleetBoard = window.getComputedStyle(fleetBoard).display === "grid";
-  let text = "View Fleet Board";
-  if (!isFleetBoard) {
-    text = "View Attack Board";
-    attackBoard.style.display = "none";
-    fleetBoard.style.display = "grid";
-  } else {
-    attackBoard.style.display = "grid";
-    fleetBoard.style.display = "none";
-  }
-  boardToggle.innerHTML = text;
-});
-
 const boats = document.getElementsByClassName("boat");
 let start;
 let currentRow = "a";
@@ -351,6 +335,7 @@ const addBoatMoveListener = (e) => {
           document
             .getElementById("fleet-board")
             .replaceWith(window.nextPlayer.fleetBoard.el);
+          document.getElementById("board-and-info").append(window.nextPlayer.fleetBoard.buildGamePieces());
           togglePlayer();
           const boats = document.getElementsByClassName("boat");
           for (let boat of boats) {

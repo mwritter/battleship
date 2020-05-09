@@ -92,20 +92,12 @@ span.place {
   background-color: #7e7e7e;
 }
 
-#fleet-board-and-info {
+#board-and-info {
   display: grid;
   justify-self: center;
-  align-self: end;
+  align-self: start;
   /* grid-row: 1/2;
   grid-column: 1/2; */
-}
-
-#attack-board-and-info {
-  display: none;
-  justify-self: center;
-  align-self: end;
-  grid-row: 1/2;
-  grid-column: 1/2;
 }
 
 #player-info {
