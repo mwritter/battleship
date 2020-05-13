@@ -28,7 +28,7 @@ class Board {
       for (let i = 1; i <= this.COLUMNS; i++) {
         if (count <= this.COLUMNS) {
           let column_indicator = document.createElement("p");
-          column_indicator.innerHTML = this.COLUMNS - count;
+          column_indicator.innerHTML = (this.COLUMNS - count) + 1;
           this.el.prepend(column_indicator);
           count++;
         }
