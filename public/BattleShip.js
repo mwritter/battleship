@@ -1,5 +1,6 @@
 import Player from "./Player.js";
 import Board from "./Board.js";
+import Boat from "./Boat.js";
 
 export default class BattleShip {
 	constructor(names) {
@@ -77,11 +78,16 @@ export default class BattleShip {
 	};
 
 	takeShot(place) {
+		if (this.currentPlayer.isShooting) {
+			return;
+		}
+		let sunk = false;
+		this.currentPlayer.isShooting = true;
 		let className = "miss";
-		for (let points of this.nextPlayer.fleet) {
+		for (let boat of this.nextPlayer.fleet) {
 			let found = false;
 			className = "miss";
-			for (let point of points) {
+			for (let point of boat.points) {
 				if (point.point == place.dataset.value) {
 					found = true;
 					className = "hit";
@@ -102,11 +108,20 @@ export default class BattleShip {
 			place,
 			className,
 		});
-		let msg =
-			`Thats a ${className.toUpperCase()}!
-			${className == 'hit' ? 'We might just win this!' : "We'll have to do better next time."}
-			`
+		if (className == 'hit') {
+			for (let boat of this.nextPlayer.fleet) {
+				if (boat.points.map(point => point.point).includes(place.dataset.value)) {
+					boat.hits.push(place.dataset.value);
+					sunk = boat.isSunk();
+				}
+			}
+		}
+
+		let msg = sunk
+			? `Good job captain! You've sunk ${this.nextPlayer.getName()} boat!`
+			: `Thats a ${className.toUpperCase()}!`
 		let onClick = () => {
+			delete this.currentPlayer.isShooting;
 			this.togglePlayer();
 			this.toggleAttackBoard();
 			let alertBox = document.getElementById('alert-box')
@@ -114,12 +129,12 @@ export default class BattleShip {
 			alertBox.removeEventListener('click', onClick);
 			alertBox.style.display = 'none';
 		}
-		this.alertNextPlayer(msg, onClick);
+		this.alertPlayer({ msg, onClick });
 	};
 
 	drawFleet(currentBoats) {
 		for (let currentBoat of currentBoats) {
-			for (let point of currentBoat) {
+			for (let point of currentBoat.getPoints()) {
 				document.querySelector(`[data-value=${point.point}]`).classList =
 					point.classList;
 			}
@@ -329,7 +344,7 @@ export default class BattleShip {
 				});
 				let found = false;
 				for (let currentBoat of this.currentPlayer.fleet) {
-					for (let point of currentBoat) {
+					for (let point of currentBoat.getPoints()) {
 						const newPoint = pointArray.find((p) => p.point == point.point);
 						if (newPoint) {
 							found = true;
@@ -338,7 +353,7 @@ export default class BattleShip {
 					}
 				}
 				if (!found) {
-					this.currentPlayer.fleet.push(pointArray);
+					this.currentPlayer.fleet.push(new Boat({ points: pointArray }));
 					this.placingBoat = false;
 					document.removeEventListener("keydown", this.boatMoveListener);
 					this.pos = "h";
@@ -346,28 +361,28 @@ export default class BattleShip {
 						this.allPiecesSet(this.currentPlayer) &&
 						this.allPiecesSet(this.nextPlayer)
 					) {
+						let alertBox = document.getElementById('alert-box')
+						document.getElementById("game-pieces").replaceWith(alertBox);
 						let msg =
 							`Looks like all boats are set <i class="fas fa-thumbs-up"></i><br/>
-								click here to pass to ${this.nextPlayer.getName()}`
+								click here then pass to ${this.nextPlayer.getName()}`
 						let onClick = () => {
 							this.nextPlayer.attackBoard = new Board({ type: "attack" });
 							this.nextPlayer.attackBoard.render();
-							document.getElementById("fleet-board").remove();
-							document.getElementById("game-pieces").remove();
-							let boardAndInfo = document.getElementById("board-and-info")
-							boardAndInfo.style.gridTemplateRows = "auto 2fr"
-							boardAndInfo.append(this.nextPlayer.attackBoard.el);
+							document.getElementById("fleet-board").replaceWith(this.nextPlayer.attackBoard.el)
+							this.togglePlayer();
 							this.addShotListener();
-							let alertBox = document.getElementById('alert-box')
 							alertBox.innerHTML = ''
 							alertBox.removeEventListener('click', onClick);
 							alertBox.style.display = 'none';
+							let boardSwap = document.getElementById('board-swap');
+							boardSwap.style.display = '';
 						}
-						this.alertNextPlayer(msg, onClick);
+						this.alertPlayer({ msg, onClick });
 					} else if (this.allPiecesSet(this.currentPlayer)) {
 						let msg =
 							`Looks like all boats are set <i class="fas fa-thumbs-up"></i><br/>
-								click here to pass to ${this.nextPlayer.getName()}`
+								click here then pass to ${this.nextPlayer.getName()}`
 						let onClick = () => {
 							document.getElementById("fleet-board").innerHTML = "";
 							this.nextPlayer.fleetBoard.render();
@@ -387,12 +402,22 @@ export default class BattleShip {
 							alertBox.removeEventListener('click', onClick);
 							alertBox.style.display = 'none';
 						}
-						this.alertNextPlayer(msg, onClick);
+						this.alertPlayer({ msg, onClick });
 
 
 					}
 				} else {
-					alert("Move your boat!");
+					const alertBox = document.getElementById('alert-box');
+					this.alertPlayer({
+						msg: `Your boats are overlapping captain!<br>Move that boat!`,
+						onClick: () => {
+							console.log('clicked');
+							alertBox.style.display = 'none'
+							alertBox.innerHTML = ''
+							alertBox.removeEventListener('click', this)
+						},
+						title: 'Click and then move your boat'
+					});
 				}
 			}
 		}
@@ -409,9 +434,12 @@ export default class BattleShip {
 		}
 	}
 
-	alertNextPlayer(msg = '', onClick) {
-		const alertBox = document.getElementById('alert-box')
-		alertBox.addEventListener('click', onClick);
+	alertPlayer({ msg, onClick, title }) {
+		const alertBox = document.getElementById('alert-box');
+		alertBox.setAttribute('title', title ? title : 'Click to pass turn');
+		if (onClick) {
+			alertBox.addEventListener('click', onClick);
+		}
 		alertBox.style.display = 'flex';
 		alertBox.innerHTML = `<h1>${msg}</h1>`
 		return alertBox;

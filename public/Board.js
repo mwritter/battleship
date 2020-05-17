@@ -41,7 +41,15 @@ class Board {
 				this.el.appendChild(place);
 			}
 		}
-		this.el.prepend(document.createElement("p"));
+		let boardSwap = document.createElement("i");
+		let place = document.createElement("p");
+		boardSwap.classList.add('fas');
+		boardSwap.classList.add('fa-sync-alt');
+		boardSwap.setAttribute('title', 'View Fleet Board')
+		boardSwap.setAttribute('id', 'board-swap')
+		boardSwap.style.display = 'none'
+		place.append(boardSwap)
+		this.el.prepend(place);
 		return;
 	}
 

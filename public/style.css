@@ -95,9 +95,10 @@ span.place {
 
 #board-and-info {
   display: grid;
+  gap: 20px;
   grid-row: 2/3;
   grid-column: 1/1;
-  grid-template-rows: auto 2fr 0.5fr;
+  grid-template-rows: auto 2fr 1fr;
   justify-self: center;
   align-self: start;
 }
@@ -130,7 +131,8 @@ span.place {
 
 .board {
   display: grid;
-  /* grid-area: board; */
+  grid-row: 2/3;
+  grid-column: 1/1;
   justify-self: center;
   align-self: end;
   grid-template-columns: repeat(11, 1fr);
@@ -267,5 +269,11 @@ span.place {
   padding: 4rem;
   border-radius: 50px;
   border: 10px solid rgb(0, 0, 0);
+  cursor: pointer;
+  grid-row: 2/3;
+  grid-column: 1/1;
+}
+
+#board-swap {
   cursor: pointer;
 }

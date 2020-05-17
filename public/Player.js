@@ -3,6 +3,7 @@ class Player {
     this.name = name;
     this.fleet = [];
     this.attacks = [];
+    this.currentBoard = 'fleet';
   }
 
   getFleet() {
@@ -15,6 +16,10 @@ class Player {
 
   getName() {
     return this.name;
+  }
+
+  getCurrentBoard() {
+    return this.currentBoard;
   }
 }
 
