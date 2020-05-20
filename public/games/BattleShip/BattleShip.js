@@ -1,4 +1,4 @@
-import Player from "./Player.js";
+import Player from "../Player.js";
 import Board from "./Board.js";
 import Boat from "./Boat.js";
 
@@ -6,7 +6,6 @@ export default class BattleShip {
 	constructor(names) {
 		this.player_one = new Player(names.playerOne)
 		this.player_two = new Player(names.playerTwo)
-		this.playerInfo = document.getElementById("player-info")
 		this.currentPlayer = this.player_one
 		this.nextPlayer = this.player_two
 		this.ROWS = "abcdefghij".split("")
@@ -20,6 +19,11 @@ export default class BattleShip {
 	}
 
 	go() {
+		document.getElementById('app').innerHTML = `
+		<div id="player-info"></div>
+		<div id="board-and-info">
+		  <div id="alert-box"></div>
+		</div>`;
 		this.gameSetup();
 		this.renderBoard();
 	}
@@ -36,6 +40,7 @@ export default class BattleShip {
 
 	renderBoard() {
 		let boardAndInfo = document.getElementById("board-and-info");
+		this.playerInfo = document.getElementById("player-info")
 		this.player_one.fleetBoard.render();
 		this.playerInfo.innerHTML = this.currentPlayer.getName();
 		boardAndInfo.append(this.player_one.fleetBoard.buildGameInfo());
@@ -81,7 +86,10 @@ export default class BattleShip {
 		if (this.currentPlayer.isShooting) {
 			return;
 		}
-		let sunk = false;
+		let msg,
+			sunk = false,
+			won = false;
+
 		this.currentPlayer.isShooting = true;
 		let className = "miss";
 		for (let boat of this.nextPlayer.fleet) {
@@ -108,28 +116,51 @@ export default class BattleShip {
 			place,
 			className,
 		});
+		// if its its a hit we need to check if the boat has been sunk
 		if (className == 'hit') {
-			for (let boat of this.nextPlayer.fleet) {
-				if (boat.points.map(point => point.point).includes(place.dataset.value)) {
+			let boatsLeft = this.nextPlayer.fleet.filter(b => !b.isSunk());
+			for (let boat of boatsLeft) {
+				if (boat.getPoints().map(point => point.point).includes(place.dataset.value)) {
 					boat.hits.push(place.dataset.value);
 					sunk = boat.isSunk();
+					// if the boat is sunk we need to check for a win
+					if (sunk && (boatsLeft.length - 1) == 0) {
+						won = true;
+					}
 				}
 			}
 		}
 
-		let msg = sunk
-			? `Good job captain! You've sunk ${this.nextPlayer.getName()} boat!`
-			: `Thats a ${className.toUpperCase()}!`
+		if (won) {
+			msg = `Good game captain!<br/>You've successfully sunk all the enemy ships`;
+		} else if (sunk) {
+			msg = `Good job captain!<br/>You've sunk one of ${this.nextPlayer.getName()} boat!`
+		} else if (className == 'hit') {
+			msg = `Thats a HIT!`
+		} else {
+			msg = `Looks like a MISS!`
+		}
+
 		let onClick = () => {
+			let alertBox = document.getElementById('alert-box')
 			delete this.currentPlayer.isShooting;
+			// games over
+			if (won) {
+				alertBox.removeEventListener('click', onClick);
+				return;
+			}
 			this.togglePlayer();
 			this.toggleAttackBoard();
-			let alertBox = document.getElementById('alert-box')
 			alertBox.innerHTML = ''
 			alertBox.removeEventListener('click', onClick);
 			alertBox.style.display = 'none';
-		}
-		this.alertPlayer({ msg, onClick });
+		};
+
+		this.alertPlayer({
+			msg,
+			onClick,
+			title: won ? 'Good game captain!' : ''
+		});
 	};
 
 	drawFleet(currentBoats) {
@@ -408,14 +439,15 @@ export default class BattleShip {
 					}
 				} else {
 					const alertBox = document.getElementById('alert-box');
+					let onClick = () => {
+						console.log('clicked');
+						alertBox.style.display = 'none'
+						alertBox.innerHTML = ''
+						alertBox.removeEventListener('click', this)
+					}
 					this.alertPlayer({
 						msg: `Your boats are overlapping captain!<br>Move that boat!`,
-						onClick: () => {
-							console.log('clicked');
-							alertBox.style.display = 'none'
-							alertBox.innerHTML = ''
-							alertBox.removeEventListener('click', this)
-						},
+						onClick,
 						title: 'Click and then move your boat'
 					});
 				}
@@ -436,7 +468,7 @@ export default class BattleShip {
 
 	alertPlayer({ msg, onClick, title }) {
 		const alertBox = document.getElementById('alert-box');
-		alertBox.setAttribute('title', title ? title : 'Click to pass turn');
+		alertBox.setAttribute('title', title && title.trim().length ? title : 'Click to pass turn');
 		if (onClick) {
 			alertBox.addEventListener('click', onClick);
 		}
