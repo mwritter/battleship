@@ -1,4 +1,4 @@
-import Player from "../Player.js";
+import Player from "./Player.js";
 import Board from "./Board.js";
 import Boat from "./Boat.js";
 
