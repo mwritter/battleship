@@ -1,9 +1,11 @@
 import Player from "./Player.js";
 import Board from "./Board.js";
 import Boat from "./Boat.js";
+import event from './events.js';
 
 export default class BattleShip {
 	constructor(names) {
+		this.event = new event();
 		this.player_one = new Player(names.playerOne)
 		this.player_two = new Player(names.playerTwo)
 		this.currentPlayer = this.player_one
@@ -26,6 +28,12 @@ export default class BattleShip {
 		</div>`;
 		this.gameSetup();
 		this.renderBoard();
+	}
+
+	createGame(){
+		this.event.create().then((id) => {
+			this.id = id
+		})
 	}
 
 	gameSetup() {

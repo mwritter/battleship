@@ -10,24 +10,37 @@
   <title>Battleship</title>
 
   <!-- update the version number as needed -->
-  <script defer src="/__/firebase/7.13.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/7.13.2/firebase-auth.js"></script>
+  <!-- <script defer src="/__/firebase/7.13.2/firebase-auth.js"></script>
   <script defer src="/__/firebase/7.13.2/firebase-database.js"></script>
   <script defer src="/__/firebase/7.13.2/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/7.13.2/firebase-storage.js"></script>
+  <script defer src="/__/firebase/7.13.2/firebase-storage.js"></script> -->
   <!-- initialize the SDK after all desired features are loaded -->
 </head>
 
 <body>
   <div id="app"></div>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
-  <script src="./js/firebase_config.js"></script>
+  <script >
+   //Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBJRcoXWHje3xZX7tsAwdBJ1NKQaggQ4lQ",
+      authDomain: "games-20d68.firebaseapp.com",
+      databaseURL: "https://games-20d68.firebaseio.com",
+      projectId: "games-20d68",
+      storageBucket: "games-20d68.appspot.com",
+      messagingSenderId: "964533623957",
+      appId: "1:964533623957:web:061db2555c381e43cc8f9c",
+      measurementId: "G-411QDQCNGM"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();</script>
   <script type="module" src="./js/app.js"></script>
 </body>
 
